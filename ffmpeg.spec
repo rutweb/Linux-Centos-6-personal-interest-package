@@ -16,23 +16,24 @@ BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
 BuildRequires: zlib-devel
 BuildRequires: openjpeg-devel
-%{!?_without_a52dec:BuildRequires: a52dec-devel}
-%{!?_without_dc1394:BuildRequires: libdc1394-devel}
-%{!?_without_dirac:BuildRequires: dirac-devel}
-%{!?_without_faac:BuildRequires: faac-devel}
-%{!?_without_gsm:BuildRequires: gsm-devel}
-%{!?_without_lame:BuildRequires: lame-devel}
-%{!?_without_nut:BuildRequires: libnut-devel}
-%{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
-%{!?_without_rtmp:BuildRequires: librtmp-devel}
-%{!?_without_schroedinger:BuildRequires: schroedinger-devel}
-%{!?_without_texi2html:BuildRequires: texi2html}
-%{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
-%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
-%{!?_without_vpx:BuildRequires: libvpx-devel}
-%{!?_without_x264:BuildRequires: x264-devel}
-%{!?_without_a52dec:Requires: a52dec}
-%{!?_without_speex:BuildRequires: libspeex-devel}
+BuildRequires: a52dec-devel
+BuildRequires: libdc1394-devel
+BuildRequires: dirac-devel
+BuildRequires: faac-devel
+BuildRequires: gsm-devel
+BuildRequires: lame-devel
+BuildRequires: libnut-devel
+BuildRequires: opencore-amr-devel
+BuildRequires: librtmp-devel
+BuildRequires: schroedinger-devel
+BuildRequires: texi2html
+BuildRequires: libogg-devel, libtheora-devel
+BuildRequires: libogg-devel, libvorbis-devel
+BuildRequires: libvpx-devel
+BuildRequires: x264-devel
+BuildRequires: libspeex-devel
+BuildRequires: libaacplus-devel >= 2.0.2
+BuildRequires: libcdio-devel
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -49,20 +50,22 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 Requires: openjpeg-devel
-%{!?_without_a52dec:Requires: a52dec-devel}
-%{!?_without_dc1394:Requires: libdc1394-devel}
-%{!?_without_dirac:Requires: dirac-devel}
-%{!?_without_faac:Requires: faac-devel}
-%{!?_without_gsm:Requires: gsm-devel}
-%{!?_without_lame:Requires: lame-devel}
-%{!?_without_opencore_amr:Requires: opencore-amr-devel}
-%{!?_without_rtmp:Requires: librtmp-devel}
-%{!?_without_schroedinger:Requires: schroedinger-devel}
-%{!?_without_theora:Requires: libogg-devel, libtheora-devel}
-%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
-%{!?_without_vpx:Requires: libvpx-devel}
-%{!?_without_x264:Requires: x264-devel}
-%{!?_without_xvid:Requires: xvidcore-devel}
+Requires: a52dec-devel
+Requires: libdc1394-devel
+Requires: dirac-devel
+Requires: faac-devel
+Requires: gsm-devel
+Requires: lame-devel
+Requires: opencore-amr-devel
+Requires: librtmp-devel
+Requires: schroedinger-devel
+Requires: libogg-devel, libtheora-devel
+Requires: libogg-devel, libvorbis-devel
+Requires: libvpx-devel
+Requires: x264-devel
+Requires: xvidcore-devel
+Requires: libaacplus-devel >= 2.0.2
+Requires: libcdio-devel
 
 %description devel
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -115,21 +118,21 @@ export CFLAGS="%{optflags}"
     --extra-cflags="%{optflags} -fPIC" \
 %endif
     --enable-avfilter \
-%{!?_without_dc1394:--enable-libdc1394} \
-%{!?_without_dirac:--enable-libdirac} \
-%{!?_without_faac:--enable-libfaac} \
-%{!?_without_gsm:--enable-libgsm} \
-%{!?_without_lame:--enable-libmp3lame} \
-%{!?_without_nut:--enable-libnut} \
-%{!?_without_opencore_amr:--enable-libopencore-amrnb --enable-libopencore-amrwb} \
-%{!?_without_rtmp: --enable-librtmp} \
-%{!?_without_schroedinger:--enable-libschroedinger} \
-%{!?_without_speex:--enable-libspeex} \
-%{!?_without_theora:--enable-libtheora} \
-%{!?_without_vorbis: --enable-libvorbis} \
-%{!?_without_vpx: --enable-libvpx} \
-%{!?_without_x264:--enable-libx264} \
-%{!?_without_xvid:--enable-libxvid} \
+    --enable-libdc1394 \
+    --enable-libdirac \
+    --enable-libfaac \
+    --enable-libgsm \
+    --enable-libmp3lame \
+    --enable-libnut \
+    --enable-libopencore-amrnb --enable-libopencore-amrwb \
+    --enable-librtmp \
+    --enable-libschroedinger \
+    --enable-libspeex \
+    --enable-libtheora \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libx264 \
+    --enable-libxvid \
     --enable-gpl \
     --enable-nonfree \
     --enable-libopenjpeg \
@@ -139,7 +142,10 @@ export CFLAGS="%{optflags}"
     --enable-swscale \
     --enable-vdpau \
     --enable-version3 \
-    --enable-x11grab
+    --enable-x11grab \
+    --enable-libaacplus \
+    --enable-libcdio
+    
 
 %{__make} %{?_smp_mflags}
 
